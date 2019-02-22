@@ -13,6 +13,11 @@ I use:
 
 You want to know if you can change any of these? Of course, why not? It is your package after all. I simply get down to business of generating, no questions asked and then quiety get out of the way!
 
+## Next development
+
+* Add publish task in package.json updating npmignore: https://www.twilio.com/blog/2017/06/writing-a-node-module-in-typescript.html
+* Maybe create a ui exe (electron) as interface to use generator
+
 ## Usage
 
 Install `generator-node-express-typescript` globally. If you are planning to use _gulp_, install `gulp-cli` globally.
