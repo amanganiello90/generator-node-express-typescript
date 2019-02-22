@@ -1,4 +1,4 @@
-export class <%= className %> {
+export class Greater {
   private greeting: string;
 
   constructor(message: string) {
