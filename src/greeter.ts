@@ -1,4 +1,4 @@
-export class Greater {
+export class Greeter {
   private greeting: string;
 
   constructor(message: string) {
