@@ -53,7 +53,7 @@ To build the microservice (from ts to js in lib output dir):
 > npm run build
 ```
 
-> This is a development mode where you will have a lib dir with js and d.ts files. Therefore directly you will **transpile** the ts file to js file with its source map and definition. **So this last is a mode to build a library not a product microservice**.
+> This is a development mode where you will have a lib dir with js and d.ts files. Therefore directly you will **transpile** the ts file to js file with its source map and definition (You need to run npm install to have the node_modules with external dependencies yet). **So this last is a mode to build a library not a product microservice**.
 
 To build the microservice in an outuput bundle using **webpack**:
 
@@ -62,7 +62,9 @@ To build the microservice in an outuput bundle using **webpack**:
 > npm run build:bundle
 ```
 
-You will have a *bundle* folder with only the **main server.js and config env directory**
+You will have a *bundle* folder with only the **main server.js and config env directory**.
+
+> The last is a production build mode where you have a main file with all necessary for running (you don't need to install anything).
 
 To publish:
 
