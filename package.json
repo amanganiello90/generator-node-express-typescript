@@ -1,61 +1,64 @@
 {
-  "name": "generator-node-express-typescript-example",
-  "version": "1.0.0",
-  "description": "generator-node-express-typescript example",
+  "name": "generator-example",
+  "version": "1.0.0-SNAPSHOT",
+  "description": "generator-example",
   "license": "MIT",
   "repository": "",
-  "author": {
-    "name": "amanganiello90",
-    "email": "angelo.mang@libero.it",
-    "url": "https://github.com/amanganiello90"
-  },
   "keywords": [
     "express-ts"
   ],
   "files": [
-    "lib"
+    "lib",
+	  "bundle"
   ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "start":"node lib/server.js",
-	"start:dev": "nodemon",
+    "start": "node lib/server.js",
+    "start:bundle": "node bundle/server.js",
+    "start:dev": "nodemon",
     "clean": "rimraf lib && rimraf coverage",
+    "clean:bundle":"rimraf bundle && rimraf coverage",
     "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build:bundle",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
-    "build": "tsc --pretty",
-	"build:only": "tsc --pretty",
+    "build:bundle": "npm run build && npm run clean:bundle && webpack --config webpack.config.js && npm run copy-env:bundle && npm run clean",
+    "build": "tsc --pretty && npm run copy:env",
+    "build:only": "tsc --pretty && npm run copy:env",
+    "copy:env": "cpx  \"src/**/*.env\"  lib -C -p  && cd lib && cd .. ",
+    "copy-env:bundle": "cpx  \"src/**/*.env\"  bundle -C -p  && cd bundle && cd .. ",
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "npm run build -- --watch",
     "watch:test": "jest --watch"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "lodash": "^4.17.4"
+    "body-parser": "1.17.0",
+    "dotenv": "6.2.0",
+    "express": "4.16.1"
   },
   "devDependencies": {
-    "@types/body-parser": "^1.16.3",
-    "@types/express": "^4.0.35",
-    "@types/jest": "^22.0.1",
-    "@types/lodash": "^4.14.65",
-    "@types/node": "^8.0.0",
-    "coveralls": "^2.0.0",
-    "jest": "^22.0.4",
-    "nodemon": "^1.18.10",
-    "prettier": "^1.5.2",
-    "rimraf": "^2.0.0",
-    "ts-jest": "^22.0.1",
-    "ts-node": "^3.2.0",
-    "tslint": "^5.0.0",
-    "tslint-config-prettier": "^1.1.0",
-    "typescript": "^2.3.0"
+    "@types/body-parser": "1.17.0",
+    "@types/dotenv": "6.1.0",
+    "@types/express": "4.16.1",
+    "@types/jest": "24.0.6",
+    "@types/node": "10.12.27",
+    "cpx": "1.5.0",
+    "jest": "24.1.0",
+    "nodemon": "1.18.10",
+    "prettier": "1.16.4",
+    "rimraf": "2.6.3",
+    "ts-jest": "24.0.0",
+    "ts-node": "8.0.2",
+    "tslint": "5.13.0",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.3.1",
+    "webpack": "4.29.6",
+    "webpack-cli": "3.2.3"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.9.0 || >= 10.13.0"
   },
   "jest": {
     "transform": {

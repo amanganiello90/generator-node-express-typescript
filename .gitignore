@@ -6,6 +6,8 @@ yarn-error.log*
 .nyc_output
 lib
 lib_test
+bundle
 .idea/
 *.iml
 yarn.lock
+package-lock.json

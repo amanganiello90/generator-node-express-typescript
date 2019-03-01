@@ -2,33 +2,86 @@
 [![Coverage Status](https://coveralls.io/repos/github/{{github-user-name}}/{{github-app-name}}/badge.svg?branch=master)](https://coveralls.io/github/{{github-user-name}}/{{github-app-name}}?branch=master)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
-# Using this module in other modules
+# Showcase for NodeJS microservices
 
-Here is a quick example of how this module can be used in other modules. The [TypeScript Module Resolution Logic](https://www.typescriptlang.org/docs/handbook/module-resolution.html) makes it quite easy. The file `src/index.ts` is a [barrel](https://basarat.gitbooks.io/typescript/content/docs/tips/barrel.html) that re-exports selected exports from other files. The _package.json_ file contains `main` attribute that points to the generated `lib/index.js` file and `typings` attribute that points to the generated `lib/index.d.ts` file.
+## Description
+This is a *Showcase project* used to show how to use new feature of my [Generator Node Express Typescript](https://github.com/amanganiello90/generator-node-express-typescript)
 
-> If you are planning to have code in multiple files (which is quite natural for a NodeJS module) that users can import, make sure you update `src/index.ts` file appropriately.
+## How-To use
+To try this showcase, follows these simple instructions.
+1. Clone this project on your filesystem.
+2. Open the project with your *Visual Studio Code*.
 
-Now assuming you have published this amazing module to _npm_ with the name `my-amazing-lib`, and installed it in the module in which you need it -
+*you will see that into Explorer frame the **node_modules** is absence or empty.*
 
-- To use the `Greeter` class in a TypeScript file -
-
-```ts
-import { Greeter } from "my-amazing-lib";
-
-const greeter = new Greeter("World!");
-greeter.greet();
+3. Within *Visual Studio Code* terminal edit:
+```
+> npm install
 ```
 
-- To use the `Greeter` class in a JavaScript file -
+*the system will download all dependencies required. Now *node_modules* is created and filled.*
 
-```js
-const Greeter = require('my-amazing-lib').Greeter;
-
-const greeter = new Greeter('World!');
-greeter.greet();
+4. And to finish launch
+```
+> npm start:dev
 ```
 
-## Setting travis and coveralls badges
-1. Sign in to [travis](https://travis-ci.org/) and activate the build for your project.
-2. Sign in to [coveralls](https://coveralls.io/) and activate the build for your project.
-3. Replace {{github-user-name}}/{{github-app-name}} with your repo details like: "ospatil/generator-node-typescript".
+*the server starts and the message: "App listening on port 8089!" in **Terminal Tab** showing the port used to invoke the services published.
+
+## Test
+This project uses *Jest* as framework test. 
+For this run:
+
+```
+> npm test
+```
+
+Instead for coverage results:
+
+```
+> npm run coverage
+```
+
+## Debug
+
+In visual studio Code press **F5** after setting a breakpoint.
+
+## Build and publish
+To build the microservice (from ts to js in lib output dir):
+
+```
+> npm run build
+```
+
+To build the microservice in a outuput bundle using **webpack**:
+
+
+```
+> npm run build:bundle
+```
+
+You will have a *bundle* folder with only the **main server.js and config env directory**
+
+To publish:
+
+```
+> npm publish
+```
+
+On default this command run also the **npm run build:bundle** task.
+
+## Running microservice after publishing
+
+You have to download the published .targz from your registry.
+
+According the webpack build, you have only to unpack the file, and run in the **package** folder:
+
+```
+> npm run start:bundle
+```
+
+or
+
+```
+> node bundle/server.js
+```
