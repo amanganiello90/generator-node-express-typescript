@@ -53,7 +53,7 @@ To build the microservice (from ts to js in lib output dir):
 > npm run build
 ```
 
-To build the microservice in a outuput bundle using **webpack**:
+To build the microservice in an outuput bundle using **webpack**:
 
 
 ```
